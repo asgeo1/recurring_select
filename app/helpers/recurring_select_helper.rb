@@ -59,7 +59,11 @@ module RecurringSelectHelper
         options_array << custom_label
       end
 
-      options_for_select(options_array, currently_selected_rule.to_json)
+      if RecurringSelect.is_valid_rule?(currently_selected_rule)
+        selected_rule = RecurringSelect.dirty_hash_to_rule(currently_selected_rule).to_hash.to_json
+      end
+
+      options_for_select(options_array, selected_rule)
     end
 
     private
