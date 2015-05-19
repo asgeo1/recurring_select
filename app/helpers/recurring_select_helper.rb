@@ -84,8 +84,8 @@ module RecurringSelectHelper
 
     def current_rule_in_defaults?(currently_selected_rule, default_schedules)
       default_schedules.any?{|option|
-        option == currently_selected_rule or
-          (option.is_a?(Array) and option[1] == currently_selected_rule)
+        option.to_json == currently_selected_rule or
+          (option.is_a?(Array) and option[1].to_json == currently_selected_rule)
       }
     end
   end
